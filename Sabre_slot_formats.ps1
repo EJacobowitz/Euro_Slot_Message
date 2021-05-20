@@ -88,7 +88,7 @@ function write-SRM {
         "-ADES $($ades)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
         "-EOBD $($eobd)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
         "-EOBT $($eobt)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
-        "-NEWCTOT $($ctot)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-CTOT $($ctot)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
         "-REASON $($regul)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
         "-TAXITIME $($taxitime)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM -NoNewline
 
