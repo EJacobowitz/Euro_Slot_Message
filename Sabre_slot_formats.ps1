@@ -18,30 +18,36 @@ function write-SAM {
     )
     
     begin {
+        if ($PSVersionTable.PSVersion.Major -lt 7) {
+            Write-Host "Error: Need to run in Powershell 7 or above" -ForegroundColor Red
+            Break #Do not run function.
+        }
+
+        
         
     }
     
     process {
+        $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
+        $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
+        $fullfilepath = "$($ScriptDir)\$($filename)"
 
-        $message = " 
--TITLE SAM
--ARCID $arcid
--IFPLID $ifplid
--ADEP $adep 
--ADES $ades
--EOBT $eobt
--CTOT $ctot
--REGUL $regul
--TAXITIME $taxitime
--EOBD $eobd
--REGCAUSE $regcause
-"
+        "-TITLE SAM" | Out-File -FilePath $fullfilepath -Force -Encoding utf8NoBOM
+        "-ARCID $($arcid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-IFPLID $($ifplid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADEP $($adep)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADES $($ades)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBD $($eobd)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBT $($eobt)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-CTOT $($ctot)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-REGUL $($regul)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-TAXITIME $($taxitime)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-REGCAUSE $($regcause)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM -NoNewline
 
-        $message | Out-File -FilePath $filepath -Force
     }
     
     end {
-        
+        Move-Item -path $fullfilepath -Destination $filename -Force
     }
 }
 
@@ -64,26 +70,26 @@ function write-SRM {
     )
     
     begin {
-        
+        if ($PSVersionTable.PSVersion.Major -lt 7) {
+            Write-Host "Error: Need to run in Powershell 7 or above" -ForegroundColor Red
+            Break #Do not run function.
+        }
     }
     
     process {
 
-        $message = " 
--TITLE SRM
--ARCID $arcid
--IFPLID $ifplid
--ADEP $adep 
--ADES $ades
--EOBD $eobd
--EOBT $eobt
--NEWCTOT $ctot
--REGUL $regul
--TAXITIME $taxitime
--REGCAUSE $regcause
-"
+        "-TITLE SRM" | Out-File -FilePath $filepath -Force -Encoding utf8NoBOM
+        "-ARCID $($arcid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-IFPLID $($ifplid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-ADEP $($adep)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-ADES $($ades)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-EOBD $($eobd)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-EOBT $($eobt)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-NEWCTOT $($ctot)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-REGUL $($regul)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-TAXITIME $($taxitime)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-REGCAUSE $($regcause)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM -NoNewline
 
-        $message | Out-File -FilePath $filepath -Force
     }
     
     end {
@@ -109,24 +115,24 @@ function write-SLC {
     )
     
     begin {
-        
+        if ($PSVersionTable.PSVersion.Major -lt 7) {
+            Write-Host "Error: Need to run in Powershell 7 or above" -ForegroundColor Red
+            Break #Do not run function.
+        }
     }
     
     process {
 
-        $message = " 
--TITLE SLC
--ARCID $arcid
--IFPLID $ifplid
--ADEP $adep 
--ADES $ades
--EOBD $eobd
--EOBT $eobt
--REGCAUSE $regcause
--TAXITIME $taxitime
-"
+        "-TITLE SLC" | Out-File -FilePath $filepath -Force -Encoding utf8NoBOM
+        "-ARCID $($arcid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-IFPLID $($ifplid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-ADEP $($adep)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-ADES $($ades)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-EOBD $($eobd)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-EOBT $($eobt)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-TAXITIME $($taxitime)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
+        "-REGCAUSE $($regcause)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM -NoNewline
 
-        $message | Out-File -FilePath $filepath -Force
     }
     
     end {
