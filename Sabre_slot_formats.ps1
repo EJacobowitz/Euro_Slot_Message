@@ -78,7 +78,7 @@ function write-SRM {
     
     process {
         $ScriptDir = (Get-Location).path
-        $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
+        $filename = "SRM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
         $fullfilepath = "$($ScriptDir)\$($filename)"
 
         "-TITLE SRM" | Out-File -FilePath $fullfilepath -Force -Encoding utf8NoBOM
@@ -125,7 +125,7 @@ function write-SLC {
     
     process {
         $ScriptDir = (Get-Location).path
-        $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
+        $filename = "SLC" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
         $fullfilepath = "$($ScriptDir)\$($filename)"
 
         "-TITLE SLC" | Out-File -FilePath $fullfilepath -Force -Encoding utf8NoBOM
