@@ -28,7 +28,7 @@ function write-SAM {
     }
     
     process {
-        $ScriptDir = Split-Path $script:MyInvocation.MyCommand.Path
+        $ScriptDir = (Get-Location).path
         $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
         $fullfilepath = "$($ScriptDir)\$($filename)"
 
@@ -47,7 +47,7 @@ function write-SAM {
     }
     
     end {
-        Move-Item -path $fullfilepath -Destination $filename -Force
+        Move-Item -path $fullfilepath -Destination $filepath -Force
     }
 }
 
@@ -77,23 +77,25 @@ function write-SRM {
     }
     
     process {
+        $ScriptDir = (Get-Location).path
+        $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
+        $fullfilepath = "$($ScriptDir)\$($filename)"
 
-        "-TITLE SRM" | Out-File -FilePath $filepath -Force -Encoding utf8NoBOM
-        "-ARCID $($arcid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-IFPLID $($ifplid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-ADEP $($adep)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-ADES $($ades)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-EOBD $($eobd)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-EOBT $($eobt)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-NEWCTOT $($ctot)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-REGUL $($regul)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-TAXITIME $($taxitime)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-REGCAUSE $($regcause)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM -NoNewline
+        "-TITLE SRM" | Out-File -FilePath $fullfilepath -Force -Encoding utf8NoBOM
+        "-ARCID $($arcid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-IFPLID $($ifplid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADEP $($adep)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADES $($ades)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBD $($eobd)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBT $($eobt)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-NEWCTOT $($ctot)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-REASON $($regul)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-TAXITIME $($taxitime)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM -NoNewline
 
     }
     
     end {
-        
+        Move-Item -path $fullfilepath -Destination $filepath -Force
     }
 }
 
@@ -122,21 +124,25 @@ function write-SLC {
     }
     
     process {
+        $ScriptDir = (Get-Location).path
+        $filename = "SAM" + (get-date).ToString("yyyyMMddHHmmss") + ".txt"
+        $fullfilepath = "$($ScriptDir)\$($filename)"
 
-        "-TITLE SLC" | Out-File -FilePath $filepath -Force -Encoding utf8NoBOM
-        "-ARCID $($arcid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-IFPLID $($ifplid)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-ADEP $($adep)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-ADES $($ades)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-EOBD $($eobd)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-EOBT $($eobt)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-TAXITIME $($taxitime)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM
-        "-REGCAUSE $($regcause)" | Out-File -FilePath $filepath -Force -Append -Encoding utf8NoBOM -NoNewline
+        "-TITLE SLC" | Out-File -FilePath $fullfilepath -Force -Encoding utf8NoBOM
+        "-ARCID $($arcid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-IFPLID $($ifplid)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADEP $($adep)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-ADES $($ades)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBD $($eobd)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-EOBT $($eobt)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-REASON $($regcause)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM
+        "-TAXITIME $($taxitime)" | Out-File -FilePath $fullfilepath -Force -Append -Encoding utf8NoBOM -NoNewline
+        
 
     }
     
     end {
-        
+        Move-Item -path $fullfilepath -Destination $filepath -Force
     }
 }
 
